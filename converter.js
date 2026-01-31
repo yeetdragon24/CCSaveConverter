@@ -1,13 +1,7 @@
 App = 0;
 var Game = {};
 Game.UpgradesById = {};
-for (let i = 0; i < 875; i++) {
-	Game.UpgradesById[i] = {name:i};
-}
 Game.AchievementsById = {};
-for (let i = 0; i < 643; i++) {
-	Game.AchievementsById[i] = {name:i};
-}
 Game.Objects = {'Cursor':{},'Grandma':{},'Farm':{},'Mine':{},'Factory':{},'Bank':{},'Temple':{},'Wizard tower':{},'Shipment':{},'Alchemy lab':{},'Portal':{},'Time machine':{},'Antimatter condenser':{},'Prism':{},'Chancemaker':{},'Fractal engine':{},'Javascript console':{},'Idleverse':{},'Cortex baker':{},'You':{}};
 function pack3(values){
 	//too many save corruptions, darn it to heck
@@ -353,16 +347,17 @@ function convert(str) {
 	}
 	
 	let upgrades = save.upgrades;
-	for (let i in Game.UpgradesById) {
+	for (let i in save.upgrades) {
+		Game.UpgradesById[i] = {name:i};
 		let me = Game.UpgradesById[i];
-		if (!me) continue;
 		me.unlocked = ((upgrades[i]>>1)&1)||0;
 		me.bought = (upgrades[i]&1)||0;
 		me.vanilla = 1;
 	}
 	
 	let cheevos = save.achievs;
-	for (let i in Game.AchievementsById) {
+	for (let i in save.achievs) {
+		Game.AchievementsById[i] = {name:i}
 		let me = Game.AchievementsById[i];
 		me.won = cheevos[i] || 0;
 		me.vanilla = 1;
