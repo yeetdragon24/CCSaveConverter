@@ -347,18 +347,20 @@ function convert(str) {
 	}
 	
 	let upgrades = save.upgrades;
-	for (let i in save.upgrades) {
+	let n = Object.keys(save.upgrades).at(-1);
+	for (let i = 0; i < n; i++) {
 		Game.UpgradesById[i] = {name:i};
-		let me = Game.UpgradesById[i];
+		let me = Game.UpgradesById[i] || 0;
 		me.unlocked = ((upgrades[i]>>1)&1)||0;
 		me.bought = (upgrades[i]&1)||0;
 		me.vanilla = 1;
 	}
 	
 	let cheevos = save.achievs;
-	for (let i in save.achievs) {
+	let n = Object.keys(save.achievs).at(-1);
+	for (let i = 0; i < n; i++) {
 		Game.AchievementsById[i] = {name:i}
-		let me = Game.AchievementsById[i];
+		let me = Game.AchievementsById[i] || 0;
 		me.won = cheevos[i] || 0;
 		me.vanilla = 1;
 	}
