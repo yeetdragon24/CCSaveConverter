@@ -345,9 +345,11 @@ function convert(str) {
 		me.level = 0;
 		me.vanilla = 1;
 	}
+
+	let n;
 	
 	let upgrades = save.upgrades;
-	let n = Object.keys(save.upgrades).at(-1);
+	n = Object.keys(save.upgrades).at(-1);
 	for (let i = 0; i < n; i++) {
 		Game.UpgradesById[i] = {name:i};
 		let me = Game.UpgradesById[i] || 0;
@@ -357,7 +359,7 @@ function convert(str) {
 	}
 	
 	let cheevos = save.achievs;
-	let n = Object.keys(save.achievs).at(-1);
+	n = Object.keys(save.achievs).at(-1);
 	for (let i = 0; i < n; i++) {
 		Game.AchievementsById[i] = {name:i}
 		let me = Game.AchievementsById[i] || 0;
